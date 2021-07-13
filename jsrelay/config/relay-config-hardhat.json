@@ -1,0 +1,13 @@
+{
+    "url": "localhost",
+    "port": 8091,
+    "relayHubAddress": "0xFf503090902838baA214dEf87d49F6dC5aaBF2cf",
+    "relayVerifierAddress": "0xb9559F885CBf048b1695AA866cc9C89F34B7A78d",
+    "deployVerifierAddress": "0x68D38817589Cc68329A8555e46a4Aa219F18828E",
+    "gasPriceFactor": 1,
+    "rskNodeUrl": "http://localhost:8545",
+    "devMode": true,
+    "customReplenish": false,
+    "logLevel": 1,
+    "workdir": "/Users/koirikivi/work/sovryn/rif-relay/hardhat_env"
+}

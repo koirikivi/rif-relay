@@ -43,9 +43,11 @@
     "relay": "./scripts/startRelayServer",
     "registerRelay": "./scripts/registerRelayServer",
     "execute-test": "./scripts/execute-test",
-    "execute-all-tests": "./scripts/execute-all-tests"
+    "execute-all-tests": "./scripts/execute-all-tests",
+    "initialize-hardhat": "./initialize_hardhat.sh"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@openeth/truffle-typings": "0.0.6",
     "@openzeppelin/contracts": "^3.2.0",
     "@truffle/contract": "^4.2.23",
@@ -84,6 +86,7 @@
     "ethers": "5.0.32",
     "ethval": "^2.1.1",
     "express": "^4.17.1",
+    "hardhat": "^2.4.3",
     "jsonrpc-lite": "^2.2.0",
     "lodash": "^4.17.20",
     "loglevel": "^1.7.0",

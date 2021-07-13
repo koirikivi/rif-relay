@@ -1,13 +1,13 @@
 {
   "url": "localhost",
   "port": 8090,
-  "relayHubAddress": "0x3bA95e1cccd397b5124BcdCC5bf0952114E6A701",
-  "relayVerifierAddress": "0x74Dc4471FA8C8fBE09c7a0C400a0852b0A9d04b2",
-  "deployVerifierAddress": "0x1938517B0762103d52590Ca21d459968c25c9E67",
+  "relayHubAddress": "0xE891cC7212ebD7bba94A47FcfC31F0bf0c085f7B",
+  "relayVerifierAddress": "0xe337B746C602485D0890B6b63527a8c2a7643255",
+  "deployVerifierAddress": "0xBC2699805e76558ab817B205022Fd92320de3461",
   "gasPriceFactor": 1,
-  "rskNodeUrl": "http://rskj:4444",
+  "rskNodeUrl": "https://testnet2.sovryn.app/rpc",
   "devMode": true,
   "customReplenish": false,
   "logLevel": 1,
-  "workdir": "/home/user/workspace/enveloping/environment"
+  "workdir": "/Users/koirikivi/work/sovryn/rif-relay/"
 }

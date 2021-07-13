@@ -1,13 +1,12 @@
 require('ts-node/register/transpile-only')
 
 var HDWalletProvider = require('@truffle/hdwallet-provider')
-var mnemonic = 'digital unknown jealous mother legal hedgehog save glory december universe spread figure custom found six'
 
-const secretMnemonicFile = './secret_mnemonic'
+const privateKeyFile = './privatekey'
 const fs = require('fs')
-let secretMnemonic
-if (fs.existsSync(secretMnemonicFile)) {
-  secretMnemonic = fs.readFileSync(secretMnemonicFile, { encoding: 'utf8' })
+let privateKey
+if (fs.existsSync(privateKeyFile)) {
+  privateKey = fs.readFileSync(privateKeyFile, { encoding: 'utf8' })
 }
 
 module.exports = {
@@ -22,6 +21,14 @@ module.exports = {
       host: '127.0.0.1',
       port: 4444,
       network_id: 33,
+      gas: 6300000,
+      gasPrice: 60000000 // 0.06 gwei
+    },
+    hardhat: {
+      verbose: process.env.VERBOSE,
+      host: '127.0.0.1',
+      port: 8545,
+      network_id: 31337,
       gas: 6300000,
       gasPrice: 60000000 // 0.06 gwei
     },
@@ -51,19 +58,25 @@ module.exports = {
     },
     rsktestnet: {
       provider: function () {
-        return new HDWalletProvider(mnemonic, 'https://public-node.testnet.rsk.co')
+        // return new PrivateKeyProvider(privateKey, 'https://testnet2.sovryn.app/rpc')
+        // return new PrivateKeyProvider(privateKey, 'https://public-node.testnet.rsk.co')
+        return new HDWalletProvider(privateKey, 'https://testnet2.sovryn.app/rpc')
       },
       network_id: 31,
       gas: 6300000,
-      gasPrice: 60000000 // 0.06 gwei
+      gasPrice: 60000000, // 0.06 gwei
+      networkCheckTimeout: 9999999, // does nothing?
+      timeoutBlocks: 20000,
     },
     rskmainnet: {
       provider: function () {
-        return new HDWalletProvider(secretMnemonic, 'https://public-node.rsk.co')
+        return new PrivateKeyProvider(privateKey, 'https://mainnet2.sovryn.app/rpc')
       },
       network_id: 30,
       gas: 6300000,
-      gasPrice: 60000000 // 0.06 gwei
+      gasPrice: 60000000, // 0.06 gwei
+      networkCheckTimeout: 9999999, // does nothing?
+      timeoutBlocks: 20000,
     }
   },
   mocha: {
