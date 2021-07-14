@@ -5,7 +5,7 @@
   "relayVerifierAddress": "0xe337B746C602485D0890B6b63527a8c2a7643255",
   "deployVerifierAddress": "0xBC2699805e76558ab817B205022Fd92320de3461",
   "gasPriceFactor": 1,
-  "rskNodeUrl": "https://testnet2.sovryn.app/rpc",
+  "rskNodeUrl": "https://testnet.sovryn.app/rpc",
   "devMode": true,
   "customReplenish": false,
   "logLevel": 1,

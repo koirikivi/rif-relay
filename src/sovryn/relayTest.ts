@@ -28,6 +28,10 @@ const network: string = process.argv[2];
 const action: string = process.argv[3];
 const toBN = Web3.utils.toBN;
 
+// We could monkey-patch this. But it needs to be set on the server too. So we'll alter the source instead
+//import { constants } from '../common/Constants';
+//constants.ESTIMATED_GAS_CORRECTION_FACTOR = 2;
+
 if (network === 'hardhat') {
     tokenContract = hardhatContracts.TestToken; // token address to use on smart wallet
     smartWalletFactoryAddress = hardhatContracts.SmartWalletFactory; // the smart wallet factort contract address (can be retrieved from the summary of the deployment).
@@ -48,7 +52,7 @@ if (network === 'hardhat') {
     deployVerifierAddress = "0xbc2699805e76558ab817b205022fd92320de3461"; // the deploy verifier contract address (can be retrieved from the summary of the deployment).
     relayHubAddress = "0xe891cc7212ebd7bba94a47fcfc31f0bf0c085f7b"; // the relay hub contract address (can be retrieved from the summary of the deployment).
     relayUrl = "http://localhost:8090";
-    rpcUrl = "https://testnet2.sovryn.app/rpc";
+    rpcUrl = "https://testnet.sovryn.app/rpc";
     chainId = 31;
     sovrynSwapNetworkAddress = '0x61172b53423e205a399640e5283e51fe60ec2256';
     docTokenAddress = '0xcb46c0ddc60d18efeb0e586c17af6ea36452dae0';
@@ -208,14 +212,33 @@ async function main() {
         }
 
         console.log("Doing swap transaction")
-        const tx = await sovrynSwapNetwork.methods.convertByPath(
+
+        console.log('sovrynSwapNetwork', sovrynSwapNetworkAddress);
+        console.log('Call params');
+        console.log([
             conversionPath, // path
             sellAmount.toString(), // amount
             1, // min return
             smartWalletAddress, // beneficiary
             ZERO_ADDRESS, // affiliate account
             '0', // affiliate fee
-        ).send(commonTxParams);
+        ])
+        console.log('Tx options');
+        console.log(commonTxParams);
+        const method = sovrynSwapNetwork.methods.convertByPath(
+            conversionPath, // path
+            sellAmount.toString(), // amount
+            1, // min return
+            smartWalletAddress, // beneficiary
+            ZERO_ADDRESS, // affiliate account
+            '0', // affiliate fee
+        );
+        //const gas = await method.estimateGas();
+        //console.log("Estimated gas:", gas);
+        // TODO: how to specify gas limit here?
+        const tx = await method.send({
+            ...commonTxParams,
+        });
         console.log('Tx:', tx);
     }
 }
