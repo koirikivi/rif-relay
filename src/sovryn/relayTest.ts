@@ -139,7 +139,7 @@ async function main() {
         onlyPreferredRelays: true,
         tokenAmount: tokenAmountForRelay,
         tokenContract,
-        //retries: 10, // try getting transaction receipt this many times
+        retries: 12, // try getting transaction receipt this many times with exponential backoff
     }
 
     if (action === 'deploy-smart-wallet') {
